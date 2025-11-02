@@ -139,7 +139,7 @@ function App() {
               }
             />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blog-details" element={<BlogDetails />} />
+            <Route path="/blog-details/:blogId" element={<BlogDetails />} />
             <Route path="/wishlist-product" element={<WishlistProduct />} />
             <Route path="/wishlist-empty" element={<WishlistEmpty />} />
             <Route path="/cart-view" element={<ViewCart />} />

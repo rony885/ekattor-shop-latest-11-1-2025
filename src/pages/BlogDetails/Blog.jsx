@@ -66,7 +66,10 @@ const Blog = () => {
                       <div className="item" key={post.id}>
                         <div className="blog-post">
                           <div className="blog-img">
-                            <Link to="/blog-details" className="banner-img">
+                            <Link
+                              to={`/blog-details/${post.id}`}
+                              className="banner-img"
+                            >
                               <img
                                 src={post.img}
                                 className="img-fluid"
@@ -88,7 +91,7 @@ const Blog = () => {
                             </div>
                             <p className="blog-title">{post.desc}</p>
                             <Link
-                              to="/blog-details"
+                              to={`/blog-details/${post.id}`}
                               className="blog-btn btn-style2"
                             >
                               Read more

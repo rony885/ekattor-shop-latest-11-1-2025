@@ -7,6 +7,7 @@ const blogPosts = [
     date: "02",
     month: "Jan",
     year: "2025",
+    author: "Rakib",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const blogPosts = [
     date: "02",
     month: "Jan",
     year: "2025",
+    author: "Saifan",
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ const blogPosts = [
     date: "02",
     month: "Jan",
     year: "2025",
+    author: "Safi",
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ const blogPosts = [
     date: "02",
     month: "Jan",
     year: "2025",
+    author: "Rafsan",
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ const blogPosts = [
     date: "02",
     month: "Jan",
     year: "2025",
+    author: "Tomal",
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ const blogPosts = [
     date: "02",
     month: "Jan",
     year: "2025",
+    author: "Rahim",
   },
   {
     id: 7,
@@ -61,6 +67,7 @@ const blogPosts = [
     date: "02",
     month: "Jan",
     year: "2025",
+    author: "Habib",
   },
   {
     id: 8,
@@ -70,6 +77,7 @@ const blogPosts = [
     date: "02",
     month: "Jan",
     year: "2025",
+    author: "Babor",
   },
   {
     id: 9,
@@ -79,6 +87,7 @@ const blogPosts = [
     date: "02",
     month: "Jan",
     year: "2025",
+    author: "Akash",
   },
 ];
 

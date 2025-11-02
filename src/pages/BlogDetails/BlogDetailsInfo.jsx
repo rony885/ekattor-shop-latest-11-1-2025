@@ -1,8 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaPinterestP } from "react-icons/fa";
+import blogPosts from "../../blog.js";
 
 const BlogDetailsInfo = () => {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    setBlogs(blogPosts);
+  }, []);
+
+  const { blogId } = useParams();
+  const findBlog = blogs && blogs.find((blog) => blog.id === parseInt(blogId));
+
   return (
     <>
       <section className="breadcrumb-area">
@@ -17,9 +27,7 @@ const BlogDetailsInfo = () => {
                     </Link>
                   </li>
                   <li className="breadcrumb-li">
-                    <span className="breadcrumb-text">
-                      Wel illum qui dolorem eum fugiat?
-                    </span>
+                    <span className="breadcrumb-text">Blog Details</span>
                   </li>
                 </ul>
               </div>
@@ -34,148 +42,51 @@ const BlogDetailsInfo = () => {
             <div className="col">
               <div className="blog-article-wrapper without-wrap">
                 <div className="blog-article-wrap blog-article">
-                  {/* <!-- blog single-post start --> */}
                   <div className="article-blog-post">
-                    {/* <!-- blog img start --> */}
                     <div className="blog-post-opt blog-post-img">
                       <div className="blog-image">
-                        <Link to="/blog-details" className="banner-img">
+                        <Link to="#" className="banner-img">
                           <img
-                            src="img/blog/blog-big.jpg"
+                            src={findBlog && findBlog.img}
                             className="img-fluid"
                             alt="article-01"
                           />
                         </Link>
                         <ul>
-                          {/* <!-- blog-date start --> */}
                           <li className="date-time">
                             <span>Sep 25, 2025</span>
                           </li>
-                          {/* <!-- blog-date end --> */}
-                          {/* <!-- blog-comment start --> */}
+
                           <li className="blog-comment">
                             <span className="comment-count">2 comments</span>
                           </li>
-                          {/* <!-- blog-comment end --> */}
                         </ul>
                       </div>
                     </div>
-                    {/* <!-- blog img start --> */}
-                    {/* <!-- blog title start --> */}
+
                     <div className="blog-post-opt blog-post-title">
                       <div className="blog-revert">
                         <h6 className="post-title">
-                          Wel illum qui dolorem eum fugiat?
+                          {findBlog && findBlog.title}
                         </h6>
-                        {/* <!-- blog-info start --> */}
+
                         <div className="post-info">
                           <span>By Spacing Tech</span>
                         </div>
-                        {/* <!-- blog-info end --> */}
                       </div>
                     </div>
-                    {/* <!-- blog title end --> */}
-                    {/* <!-- blog content start --> */}
+
                     <div className="blog-post-opt blog-post-content">
                       <div className="blog-content">
                         <div className="blog-wrap-desc">
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing
-                            elit doli. Aenean commodo ligula eget dolor. Aenean
-                            massa. Cumtipsu sociis natoque penatibus et magnis
-                            dis parturient montesti, nascetur ridiculus mus.
-                            Donec quam felis, ultricies nec, pellentesque eutu,
-                            pretiumem. Nulla consequat massa quis enim. Donec
-                            pede justo, fringilla vel, aliquet nec, vulputate
-                            eget, arcu. In enim justotuio, rhoncus ut loret,
-                            imperdiet Link, venenatis vitae, justo. Nullam
-                            dictum felis eu pede mollis pretium. Intege
-                          </p>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing
-                            elit doli. Aenean commodo ligula eget dolor. Aenean
-                            massa. Cumtipsu sociis natoque penatibus et magnis
-                            dis parturient montesti, nascetur ridiculus mus.
-                            Donec quam felis, ultricies nec, pellentesque eutu,
-                            pretiumem. Nulla consequat massa quis enim. Donec
-                            pede justo, fringilla vel, aliquet nec, vulputate
-                            eget, arcu. In enim justotuio, rhoncus ut loret,
-                            imperdiet Link, venenatis vitae, justo. Nullam
-                            dictum.
-                          </p>
-                          <div>
-                            <blockquote>
-                              Lorem ipsum dolor sit amet, consectetuer
-                              adipiscing elit doli. Aenean commodo ligula eget
-                              dolor. Aenean massa. Cumtipsu sociis natoque
-                              penatibus et magnis dis parturient montesti,
-                              nascetur ridiculus mus. Donec quam felis,
-                              ultricies nec,
-                            </blockquote>
-                          </div>
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing
-                            elit doli. Aenean commodo ligula eget dolor. Aenean
-                            massa. Cumtipsu sociis natoque penatibus et magnis
-                            dis parturient montesti, nascetur ridiculus mus.
-                            Donec quam felis, ultricies nec, pellentesque eutu,
-                            pretiumem. Nulla consequat massa quis enim. Donec
-                            pede justo, fringilla vel, aliquet nec, vulputate
-                            eget, arcu. In enim justotuio, rhoncus ut loret,
-                            imperdiet Link, venenatis vitae, justo. Nullam
-                            dictum felis eu pede mollis pretium. Integer
-                            tincidunt. Cras dapibus.
-                          </p>
+                          <p>{findBlog && findBlog.desc}</p>
                         </div>
                       </div>
                     </div>
-                    {/* <!-- blog content end --> */}
-                    {/* <!-- blog tag start --> */}
-                    <div className="blog-post-opt blog-post-teg">
-                      <div className="post-info-tag">
-                        <ul className="post-tag">
-                          <li>
-                            <Link to="/blog-details">Android</Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-details">Blog</Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-details">Device</Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-details">Engineer</Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-details">Gadget</Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-details">Mobile</Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-details">News</Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-details">Raspberrypi</Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-details">Robot</Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-details">Smartphone</Link>
-                          </li>
-                          <li>
-                            <Link to="/blog-details">Techie</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    {/* <!-- blog tag end --> */}
-                    {/* <!-- blog share start --> */}
+
                     <div className="blog-post-opt blog-post-icon">
                       <div className="blog-share">
                         <ul className="social-icon">
-                          {/* facebook-icon */}
                           <li>
                             <Link to="#">
                               <span className="icon-social facebook">
@@ -184,7 +95,6 @@ const BlogDetailsInfo = () => {
                             </Link>
                           </li>
 
-                          {/* twitter-icon */}
                           <li>
                             <Link to="#">
                               <span className="icon-social twitter">
@@ -193,7 +103,6 @@ const BlogDetailsInfo = () => {
                             </Link>
                           </li>
 
-                          {/* pinterest-icon */}
                           <li>
                             <Link to="#">
                               <span className="icon-social pinterest">
@@ -204,30 +113,8 @@ const BlogDetailsInfo = () => {
                         </ul>
                       </div>
                     </div>
-                    {/* <!-- blog share end --> */}
-                    {/* <!-- blog-arrow start --> */}
-                    <div className="blog-post-opt blog-post-arrow">
-                      <div className="blog-prev-next">
-                        <ul>
-                          <li>
-                            <Link to="#">
-                              <i className="bi bi-chevron-double-left"></i>
-                              <span>Prev post</span>
-                            </Link>
-                          </li>
-                          <li>
-                            <Link to="#">
-                              <span>Next post</span>
-                              <i className="bi bi-chevron-double-right"></i>
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    {/* <!-- blog-arrow end --> */}
                   </div>
-                  {/* <!-- blog single-post end --> */}
-                  {/* <!-- blog post comment start --> */}
+
                   <div className="blog-comments">
                     <div className="review-comment">
                       <div className="cmt-tit-count">
@@ -245,8 +132,13 @@ const BlogDetailsInfo = () => {
                               </span>
                             </div>
                             <div className="review-info">
-                              <span className="cmt-authr">Oliver jake</span>
-                              <span className="time">May 14, 2025</span>
+                              <span className="cmt-authr">
+                                {findBlog && findBlog.author}
+                              </span>
+
+                              {findBlog &&
+                                `${findBlog.date} ${findBlog.month} ${findBlog.year}`}
+                              {/* {findBlog && findBlog.date + " " + findBlog.month + " " + findBlog.year} */}
                             </div>
                           </div>
                           <div className="comment-content">
@@ -307,7 +199,6 @@ const BlogDetailsInfo = () => {
                       </form>
                     </div>
                   </div>
-                  {/* <!-- blog post comment end --> */}
                 </div>
               </div>
             </div>

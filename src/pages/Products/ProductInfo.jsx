@@ -163,7 +163,7 @@ const ProductInfo = () => {
                     Total Product ({filteredProducts.length})
                   </h6>
 
-                  <div className="collection-info">
+                  {/* <div className="collection-info">
                     <div className="collection-image">
                       <img
                         src="/img/banner/sall-banner.jpg"
@@ -171,7 +171,7 @@ const ProductInfo = () => {
                         alt="sall-banner"
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 {/* <!-- shop-top-bar start --> */}
                 <div className="shop-top-bar wow">
