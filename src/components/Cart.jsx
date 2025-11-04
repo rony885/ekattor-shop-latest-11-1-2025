@@ -283,7 +283,7 @@ const Cart = ({ cartOpen, closeMennu }) => {
                                 type="button"
                                 className="js-qty-adjust ju-qty-adjust-minus"
                               >
-                               <Minus size={16} strokeWidth={2} />
+                                <Minus size={16} strokeWidth={2} />
                               </button>
                               <input
                                 type="text"
@@ -296,7 +296,7 @@ const Cart = ({ cartOpen, closeMennu }) => {
                                 type="button"
                                 className="js-qty-adjust ju-qty-adjust-plus"
                               >
-                                 <Plus size={16} strokeWidth={2} />
+                                <Plus size={16} strokeWidth={2} />
                               </button>
                             </div>
                           </div>
@@ -306,7 +306,7 @@ const Cart = ({ cartOpen, closeMennu }) => {
                         </div>
                         <div className="cart-item-remove">
                           <button type="button" className="cart-remove">
-                             <Trash2 size={16} strokeWidth={2} />
+                            <Trash2 size={16} strokeWidth={2} />
                           </button>
                         </div>
                       </div>

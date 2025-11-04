@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import categoriesData from "../../category.js";
+import {
+  FiHeart,
+  FiMenu,
+  FiSearch,
+  FiShoppingBag,
+  FiUser,
+} from "react-icons/fi";
 
 const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
   const [isVegaOpen, setIsVegaOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const [categories, setCategories] = useState([]);
 
   const handleVegaToggle = () => {
     setIsVegaOpen((prev) => !prev);
@@ -15,6 +24,10 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
   useEffect(() => {
     setIsVegaOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    setCategories(categoriesData);
+  }, []);
 
   return (
     <Wrapper>
@@ -31,21 +44,7 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                           <div className="toggler-wrapper">
                             <button className="toggler-btn">
                               <span className="toggler-icon">
-                                <svg
-                                  viewBox="0 0 24 24"
-                                  width="24"
-                                  height="24"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  fill="none"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  className="css-i6dzq1"
-                                >
-                                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                                </svg>
+                                <FiMenu size={24} strokeWidth={2} />
                               </span>
                             </button>
                           </div>
@@ -98,17 +97,7 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                           <div className="search-wrapper">
                             <Link to="#searchmodal" data-bs-toggle="modal">
                               <span className="search-icon">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="1em"
-                                  height="1em"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    fill="currentColor"
-                                    d="M11 2c4.968 0 9 4.032 9 9s-4.032 9-9 9s-9-4.032-9-9s4.032-9 9-9m0 16c3.867 0 7-3.133 7-7s-3.133-7-7-7s-7 3.133-7 7s3.133 7 7 7m8.485.071l2.829 2.828l-1.415 1.415l-2.828-2.829z"
-                                  ></path>
-                                </svg>
+                                <FiSearch size={22} color="#555" />
                               </span>
                             </Link>
                           </div>
@@ -203,36 +192,26 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
 
                       {isVegaOpen && (
                         <div className="vegawrap" id="vega-collapse">
-                          <ul className="vega-menu">
-                            <li className="menu-link">
-                              <Link to="/product" className="link-title">
-                                <span className="menu-img-icon">
-                                  <img
-                                    src="/img/menu/cate-menu1.jpg"
-                                    className="img-fluid"
-                                    alt="cate-menu1"
-                                  />
-                                </span>
-                                <span className="sp-link-title">
-                                  Pen drivess
-                                </span>
-                              </Link>
-                            </li>
-                            <li className="menu-link">
-                              <Link to="/product" className="link-title">
-                                <span className="menu-img-icon">
-                                  <img
-                                    src="/img/menu/cate-menu2.jpg"
-                                    className="img-fluid"
-                                    alt="cate-menu2"
-                                  />
-                                </span>
-                                <span className="sp-link-title">
-                                  Smart watch
-                                </span>
-                              </Link>
-                            </li>
-                          </ul>
+                          {categories.map((cat) => {
+                            return (
+                              <ul key={cat.id} className="vega-menu">
+                                <li className="menu-link">
+                                  <Link to="/product" className="link-title">
+                                    <span className="menu-img-icon">
+                                      <img
+                                        src={cat.img}
+                                        className="img-fluid"
+                                        alt="cate-menu1"
+                                      />
+                                    </span>
+                                    <span className="sp-link-title">
+                                      {cat.title}
+                                    </span>
+                                  </Link>
+                                </li>
+                              </ul>
+                            );
+                          })}
                         </div>
                       )}
                     </div>
@@ -455,21 +434,11 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                               onClick={toggleMenu}
                             >
                               <span className="toggler-icon">
-                                <svg
-                                  viewBox="0 0 24 24"
-                                  width="24"
-                                  height="24"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  fill="none"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  className="css-i6dzq1"
-                                >
-                                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                                </svg>
+                                <FiMenu
+                                  size={24}
+                                  strokeWidth={2}
+                                  color="currentColor"
+                                />
                               </span>
                             </button>
                           </div>
@@ -478,17 +447,7 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                           <div className="search-wrapper">
                             <Link to="#searchmodal" data-bs-toggle="modal">
                               <span className="search-icon">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="1em"
-                                  height="1em"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    fill="currentColor"
-                                    d="M11 2c4.968 0 9 4.032 9 9s-4.032 9-9 9s-9-4.032-9-9s4.032-9 9-9m0 16c3.867 0 7-3.133 7-7s-3.133-7-7-7s-7 3.133-7 7s3.133 7 7 7m8.485.071l2.829 2.828l-1.415 1.415l-2.828-2.829z"
-                                  />
-                                </svg>
+                                <FiSearch size={20} color="currentColor" />
                               </span>
                             </Link>
                           </div>
@@ -502,17 +461,7 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                               aria-expanded="false"
                             >
                               <span className="user-icon">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="1em"
-                                  height="1em"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    fill="currentColor"
-                                    d="M20 22h-2v-2a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v2H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5zm-8-9a6 6 0 1 1 0-12a6 6 0 0 1 0 12m0-2a4 4 0 1 0 0-8a4 4 0 0 0 0 8"
-                                  />
-                                </svg>
+                                <FiUser size={20} color="currentColor" />
                               </span>
 
                               <span className="user-title">Login</span>
@@ -531,17 +480,7 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                             <Link to="/wishlist-empty">
                               <span className="wishlist-icon-count">
                                 <span className="wishlist-icon">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="1em"
-                                    height="1em"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      fill="currentColor"
-                                      d="M12.001 4.529a5.998 5.998 0 0 1 8.242.228a6 6 0 0 1 .236 8.236l-8.48 8.492l-8.478-8.492a6 6 0 0 1 8.48-8.464m6.826 1.641a3.998 3.998 0 0 0-5.49-.153l-1.335 1.198l-1.336-1.197a4 4 0 0 0-5.686 5.605L12 18.654l7.02-7.03a4 4 0 0 0-.193-5.454"
-                                    />
-                                  </svg>
+                                  <FiHeart size={20} color="currentColor" />
                                 </span>
                               </span>
 
@@ -556,17 +495,10 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                             <div className="shopping-cart">
                               <Link className="add-to-cart" to="#">
                                 <span className="icon">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="1em"
-                                    height="1em"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      fill="currentColor"
-                                      d="M6.505 2h11a1 1 0 0 1 .8.4l2.7 3.6v15a1 1 0 0 1-1 1h-16a1 1 0 0 1-1-1V6l2.7-3.6a1 1 0 0 1 .8-.4m12.5 6h-14v12h14zm-.5-2l-1.5-2h-10l-1.5 2zm-9.5 4v2a3 3 0 1 0 6 0v-2h2v2a5 5 0 0 1-10 0v-2z"
-                                    />
-                                  </svg>
+                                  <FiShoppingBag
+                                    size={20}
+                                    color="currentColor"
+                                  />
                                 </span>
 
                                 <span className="cart-title text">My cart</span>
