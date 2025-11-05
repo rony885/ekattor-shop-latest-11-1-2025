@@ -1,27 +1,40 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import {
   FaCcVisa,
   FaCcMastercard,
   FaCcPaypal,
   FaCcAmex,
 } from "react-icons/fa6";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import prodactData from "../products.js";
 
-const productImages = [
-  "/img/product/home1-pro-1.jpg",
-  "/img/product/home1-pro-2.jpg",
-  "/img/product/home1-pro-3.jpg",
-  "/img/product/home1-pro-4.jpg",
-  "/img/product/home1-pro-5.jpg",
-];
+// const productImages = [
+//   "/img/product/home1-pro-1.jpg",
+//   "/img/product/home1-pro-2.jpg",
+//   "/img/product/home1-pro-3.jpg",
+//   "/img/product/home1-pro-4.jpg",
+//   "/img/product/home1-pro-5.jpg",
+// ];
 
 const QuickviewModal = () => {
+  const [products, setProducts] = useState([]);
+  // console.log(products);
+  useEffect(() => {
+    setProducts(prodactData);
+  }, []);
+
   const navigate = useNavigate();
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
+  const { prodId } = useParams();
+
+  // const findProduct =
+  //   products && products.find((prod) => prod.id === parseInt(prodId));
+
+  const findProduct = products.find((prod) => prod.id === parseInt(prodId));
 
   // Close modal
   const closeModal = (modalId) => {
@@ -79,7 +92,7 @@ const QuickviewModal = () => {
             </div>
             <div className="modal-body">
               <div className="quickview-slider">
-                <Slider
+                {/* <Slider
                   asNavFor={nav2}
                   ref={(slider1) => setNav1(slider1)}
                   arrows={true}
@@ -94,6 +107,7 @@ const QuickviewModal = () => {
                         onClick={() => closeModal("quickview")}
                       >
                         <img
+                          // src={img}
                           src={img}
                           className="img-fluid"
                           alt={`p-${index + 1}`}
@@ -101,6 +115,22 @@ const QuickviewModal = () => {
                       </Link>
                     </div>
                   ))}
+
+       
+                  <div>
+                      <Link
+                        to={`/product-details/${product.id}`}
+                        onClick={() => closeModal("quickview")}
+                      >
+                        <img
+                          src={img}
+                          src={findProduct.img1}
+                          className="img-fluid"
+                          alt=""
+                        />
+                      </Link>
+                    </div> 
+            
                 </Slider>
 
                 <Slider
@@ -118,6 +148,51 @@ const QuickviewModal = () => {
                         src={img}
                         className="img-fluid"
                         alt={`thumb-${index + 1}`}
+                      />
+                    </div>
+                  ))}
+                </Slider> */}
+
+                <Slider
+                  asNavFor={nav2}
+                  ref={(slider1) => setNav1(slider1)}
+                  arrows={true}
+                  fade={true}
+                  infinite={true}
+                  className="main-slider"
+                >
+                  {products.map((product) => (
+                    <div key={product.id}>
+                      <Link
+                        to={`/product-details/${product.id}`}
+                        onClick={() => closeModal("quickview")}
+                      >
+                        <img
+                          src={product.img1}
+                          className="img-fluid"
+                          alt={product.title || `product-${product.id}`}
+                        />
+                      </Link>
+                    </div>
+                  ))}
+                </Slider>
+
+                {/* 🟢 Thumbnail slider */}
+                <Slider
+                  asNavFor={nav1}
+                  ref={(slider2) => setNav2(slider2)}
+                  slidesToShow={4}
+                  swipeToSlide={true}
+                  focusOnSelect={true}
+                  infinite={true}
+                  className="thumb-slider"
+                >
+                  {products.map((product) => (
+                    <div key={product.id}>
+                      <img
+                        src={product.img1}
+                        className="img-fluid"
+                        alt={`thumb-${product.id}`}
                       />
                     </div>
                   ))}
