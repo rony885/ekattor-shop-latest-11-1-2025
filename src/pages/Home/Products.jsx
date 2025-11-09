@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import prodactData from "../../products.js";
 
-const ProductTranding = () => {
+const Products = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -56,9 +56,38 @@ const ProductTranding = () => {
   };
 
   // Open modal with body scroll handling
-  // const openModal = (modalId) => {
-  //   const modalEl = document.getElementById(modalId);
+  const openModal = (modalId, productId) => {
+    // Dispatch a custom event with selected product ID
+    const event = new CustomEvent("openQuickview", { detail: { productId } });
+    window.dispatchEvent(event);
 
+    const modalEl = document.getElementById(modalId);
+    if (modalEl && window.bootstrap) {
+      const modalInstance = window.bootstrap.Modal.getOrCreateInstance(
+        modalEl,
+        {
+          backdrop: true,
+          keyboard: true,
+        }
+      );
+
+      // 🟢 Ensure modal is reset before showing again
+      modalEl.style.display = "block";
+      modalEl.removeAttribute("aria-hidden");
+      modalEl.setAttribute("aria-modal", "true");
+      modalEl.setAttribute("role", "dialog");
+
+      modalInstance.show();
+    }
+  };
+
+  // Open modal with selected product
+  // const openModal = (modalId, productId) => {
+  //   // Dispatch a custom event with selected product ID
+  //   const event = new CustomEvent("openQuickview", { detail: { productId } });
+  //   window.dispatchEvent(event);
+
+  //   const modalEl = document.getElementById(modalId);
   //   if (modalEl && window.bootstrap) {
   //     const modalInstance = window.bootstrap.Modal.getOrCreateInstance(
   //       modalEl,
@@ -67,32 +96,9 @@ const ProductTranding = () => {
   //         keyboard: true,
   //       }
   //     );
-
-  //     // 🟢 Ensure modal is reset before showing again
-  //     modalEl.style.display = "block";
-  //     modalEl.removeAttribute("aria-hidden");
-  //     modalEl.setAttribute("aria-modal", "true");
-  //     modalEl.setAttribute("role", "dialog");
-
   //     modalInstance.show();
   //   }
   // };
-  // Open modal with selected product
-const openModal = (modalId, productId) => {
-  // Dispatch a custom event with selected product ID
-  const event = new CustomEvent("openQuickview", { detail: { productId } });
-  window.dispatchEvent(event);
-
-  const modalEl = document.getElementById(modalId);
-  if (modalEl && window.bootstrap) {
-    const modalInstance = window.bootstrap.Modal.getOrCreateInstance(modalEl, {
-      backdrop: true,
-      keyboard: true,
-    });
-    modalInstance.show();
-  }
-};
-
 
   return (
     <Wrapper>
@@ -140,7 +146,7 @@ const openModal = (modalId, productId) => {
                             <Link
                               className="quickview"
                               // onClick={() => openModal("quickview")}
-                                onClick={() => openModal("quickview", product.id)}
+                              onClick={() => openModal("quickview", product.id)}
                             >
                               <span className="tooltip-text">Quickview</span>
                               <span className="pro-action-icon">
@@ -377,8 +383,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default ProductTranding;
-
-
-
-
+export default Products;
