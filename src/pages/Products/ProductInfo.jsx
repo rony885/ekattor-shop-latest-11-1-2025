@@ -129,9 +129,12 @@ const ProductInfo = () => {
   };
 
   // Open modal with body scroll handling
-  const openModal = (modalId) => {
-    const modalEl = document.getElementById(modalId);
+  const openModal = (modalId, productId) => {
+    // Dispatch a custom event with selected product ID
+    const event = new CustomEvent("openQuickview", { detail: { productId } });
+    window.dispatchEvent(event);
 
+    const modalEl = document.getElementById(modalId);
     if (modalEl && window.bootstrap) {
       const modalInstance = window.bootstrap.Modal.getOrCreateInstance(
         modalEl,
@@ -288,7 +291,6 @@ const ProductInfo = () => {
                                       <Link
                                         // to="/product-details"
                                         to={`/product-details/${product.id}`}
-                                        // to={`/product-details/${product.id}`}
                                         className="pro-img"
                                       >
                                         <img
@@ -306,7 +308,7 @@ const ProductInfo = () => {
                                       <div className="product-action">
                                         <Link
                                           className="quickview"
-                                          onClick={() => openModal("quickview")}
+                                          onClick={() => openModal("quickview", product.id)}
                                         >
                                           <span className="tooltip-text">
                                             Quickview

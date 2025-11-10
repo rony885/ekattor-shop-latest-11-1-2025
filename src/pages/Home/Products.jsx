@@ -81,25 +81,6 @@ const Products = () => {
     }
   };
 
-  // Open modal with selected product
-  // const openModal = (modalId, productId) => {
-  //   // Dispatch a custom event with selected product ID
-  //   const event = new CustomEvent("openQuickview", { detail: { productId } });
-  //   window.dispatchEvent(event);
-
-  //   const modalEl = document.getElementById(modalId);
-  //   if (modalEl && window.bootstrap) {
-  //     const modalInstance = window.bootstrap.Modal.getOrCreateInstance(
-  //       modalEl,
-  //       {
-  //         backdrop: true,
-  //         keyboard: true,
-  //       }
-  //     );
-  //     modalInstance.show();
-  //   }
-  // };
-
   return (
     <Wrapper>
       <section className="Trending-product bg-color section-ptb">
