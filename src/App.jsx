@@ -40,6 +40,7 @@ import ProWishlist from "./pages/Accounts/ProWishlist";
 import BillingInfo from "./pages/Accounts/BillingInfo";
 import Login from "./pages/Accounts/Login";
 import PageTitle from "./components/PageTitle";
+import Register from "./pages/Accounts/Register";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -154,6 +155,7 @@ function App() {
             <Route path="/pro-wishlist" element={<ProWishlist />} />
             <Route path="/billing-info" element={<BillingInfo />} />
             <Route path="/login-account" element={<Login />} />
+            <Route path="/create-account" element={<Register />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>
