@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import prodactData from "../../products.js";
+import { WishlistContext } from "../../context/WishlistContext.js";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const { addToWishlist } = useContext(WishlistContext); // 🧩 use context
 
   useEffect(() => {
     setProducts(prodactData);
@@ -146,7 +148,12 @@ const Products = () => {
                                 <i className="feather-shopping-bag"></i>
                               </span>
                             </Link>
-                            <Link to="/wishlist-product" className="wishlist">
+                            {/* <Link to="/wishlist-product" className="wishlist"> */}
+                            <Link
+                              to="#"
+                              className="wishlist"
+                              onClick={() => addToWishlist(product)}
+                            >
                               <span className="tooltip-text">Wishlist</span>
                               <span className="pro-action-icon">
                                 <i className="feather-heart"></i>

@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { WishlistContext } from "../../context/WishlistContext";
 
 const WishlistProduct = () => {
+  const { wishlist, removeFromWishlist, clearWishlist } =
+    useContext(WishlistContext);
+
+  if (wishlist.length === 0) {
+    return (
+      <section className="wishlist-empty section-ptb text-center">
+        <h3>Your wishlist is empty 😢</h3>
+        <Link to="/product" className="btn btn-style2 mt-3">
+          Continue shopping
+        </Link>
+      </section>
+    );
+  }
+
   return (
     <>
       <section className="breadcrumb-area">
@@ -25,7 +40,7 @@ const WishlistProduct = () => {
         </div>
       </section>
 
-      <section className="wishlist-product section-ptb">
+      {/* <section className="wishlist-product section-ptb">
         <div className="container">
           <div className="row">
             <div className="col">
@@ -247,6 +262,53 @@ const WishlistProduct = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section> */}
+
+      <section className="wishlist-product section-ptb">
+        <div className="container">
+          <h2 className="mb-4">My Wishlist</h2>
+          {wishlist.map((product) => (
+            <div key={product.id} className="wishlist-area mb-4">
+              <div className="wishlist-all-pro d-flex align-items-center justify-content-between">
+                <div className="wishlist-pro d-flex align-items-center">
+                  <div className="wishlist-pro-image">
+                    <Link to={`/product-details/${product.id}`}>
+                      <img
+                        src={product.img1}
+                        alt={product.title}
+                        className="img-fluid"
+                        width="120"
+                      />
+                    </Link>
+                  </div>
+                  <div className="pro-details ms-3">
+                    <h6>
+                      <Link to={`/product-details/${product.id}`}>
+                        {product.title}
+                      </Link>
+                    </h6>
+                    <span>{product.newPrice}</span>
+                  </div>
+                </div>
+
+                <div className="qty-item">
+                  <button
+                    onClick={() => removeFromWishlist(product.id)}
+                    className="btn btn-outline-danger"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          <div className="text-center">
+            <button onClick={clearWishlist} className="btn btn-style2 mt-3">
+              Clear Wishlist
+            </button>
           </div>
         </div>
       </section>
