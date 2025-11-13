@@ -138,7 +138,11 @@ const ProductTranding = () => {
                                 <i className="feather-shopping-bag"></i>
                               </span>
                             </Link>
-                            <Link to="/wishlist-product" className="wishlist">
+                            {/* <Link to="/wishlist-product" className="wishlist"> */}
+                            <Link
+                              onClick={() => openModal("quickview", product.id)}
+                              className="wishlist"
+                            >
                               <span className="tooltip-text">Wishlist</span>
                               <span className="pro-action-icon">
                                 <i className="feather-heart"></i>

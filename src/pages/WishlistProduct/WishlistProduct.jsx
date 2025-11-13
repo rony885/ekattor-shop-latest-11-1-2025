@@ -40,7 +40,7 @@ const WishlistProduct = () => {
         </div>
       </section>
 
-      {/* <section className="wishlist-product section-ptb">
+      <section className="wishlist-product section-ptb">
         <div className="container">
           <div className="row">
             <div className="col">
@@ -264,9 +264,9 @@ const WishlistProduct = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
-      <section className="wishlist-product section-ptb">
+      {/* <section className="wishlist-product section-ptb">
         <div className="container">
           <h2 className="mb-4">My Wishlist</h2>
           {wishlist.map((product) => (
@@ -311,7 +311,7 @@ const WishlistProduct = () => {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

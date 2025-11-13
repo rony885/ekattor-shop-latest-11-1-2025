@@ -477,7 +477,8 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                         </li>
                         <li className="side-wrap wishlist-wrap">
                           <div className="wishlist-wrapper">
-                            <Link to="/wishlist-empty">
+                            {/* <Link to="/wishlist-empty"> */}
+                            <Link to="/wishlist-product">
                               <span className="wishlist-icon-count">
                                 <span className="wishlist-icon">
                                   <FiHeart size={20} color="currentColor" />
