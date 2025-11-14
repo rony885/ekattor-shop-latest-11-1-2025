@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import categoriesData from "../../category.js";
@@ -9,12 +9,14 @@ import {
   FiShoppingBag,
   FiUser,
 } from "react-icons/fi";
+import { WishlistContext } from "../../context/WishlistContext"; // make sure path is correct
 
 const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
   const [isVegaOpen, setIsVegaOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+  const { wishlist } = useContext(WishlistContext); // get wishlist from context
 
   const handleVegaToggle = () => {
     setIsVegaOpen((prev) => !prev);
@@ -480,6 +482,11 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                             {/* <Link to="/wishlist-empty"> */}
                             <Link to="/wishlist-product">
                               <span className="wishlist-icon-count">
+                                {wishlist.length > 0 && (
+                                  <span className="count-badge">
+                                    {wishlist.length}
+                                  </span>
+                                )}
                                 <span className="wishlist-icon">
                                   <FiHeart size={20} color="currentColor" />
                                 </span>

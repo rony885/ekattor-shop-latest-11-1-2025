@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 import { WishlistContext } from "../../context/WishlistContext";
 
 const WishlistProduct = () => {
@@ -31,7 +32,7 @@ const WishlistProduct = () => {
                     </Link>
                   </li>
                   <li className="breadcrumb-li">
-                    <span className="breadcrumb-text">wishlist</span>
+                    <span className="breadcrumb-text">Wishlist</span>
                   </li>
                 </ul>
               </div>
@@ -40,7 +41,7 @@ const WishlistProduct = () => {
         </div>
       </section>
 
-      <section className="wishlist-product section-ptb">
+      {/* <section className="wishlist-product section-ptb">
         <div className="container">
           <div className="row">
             <div className="col">
@@ -88,6 +89,7 @@ const WishlistProduct = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="wishlist-area">
                   <div className="wishlist-details">
                     <div className="wishlist-all-pro">
@@ -129,6 +131,7 @@ const WishlistProduct = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="wishlist-area">
                   <div className="wishlist-details">
                     <div className="wishlist-all-pro">
@@ -168,6 +171,7 @@ const WishlistProduct = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="wishlist-area">
                   <div className="wishlist-details">
                     <div className="wishlist-all-pro">
@@ -207,6 +211,7 @@ const WishlistProduct = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="wishlist-area">
                   <div className="wishlist-details">
                     <div className="wishlist-all-pro">
@@ -264,54 +269,88 @@ const WishlistProduct = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* <section className="wishlist-product section-ptb">
+      <section className="wishlist-product section-ptb">
         <div className="container">
-          <h2 className="mb-4">My Wishlist</h2>
-          {wishlist.map((product) => (
-            <div key={product.id} className="wishlist-area mb-4">
-              <div className="wishlist-all-pro d-flex align-items-center justify-content-between">
-                <div className="wishlist-pro d-flex align-items-center">
-                  <div className="wishlist-pro-image">
-                    <Link to={`/product-details/${product.id}`}>
-                      <img
-                        src={product.img1}
-                        alt={product.title}
-                        className="img-fluid"
-                        width="120"
-                      />
-                    </Link>
+          <div className="row">
+            <div className="col">
+              <div className="wishlist-page">
+                {wishlist.map((product) => (
+                  <div className="wishlist-area">
+                    <div className="wishlist-details">
+                      <div className="wishlist-all-pro">
+                        <div className="wishlist-pro">
+                          <div className="wishlist-pro-image">
+                            <Link to={`/product-details/${product.id}`}>
+                              <img
+                                src={product.img1}
+                                className="img-fluid"
+                                alt="p-5"
+                              />
+                            </Link>
+                          </div>
+                          <div className="pro-details">
+                            <h6>
+                              <Link to={`/product-details/${product.id}`}>
+                                {product.title}
+                              </Link>
+                            </h6>
+                          </div>
+                        </div>
+                        <div className="qty-item">
+                          <Link to="/cart" className="add-wishlist">
+                            Add to cart
+                          </Link>
+                          <Link to="/checkout" className="add-wishlist">
+                            Buy now
+                          </Link>
+                        </div>
+                        <div className="all-pro-price">
+                          <div className="price-box">
+                            <span className="new-price">
+                              {" "}
+                              {product.newPrice}
+                            </span>
+                            <span className="old-price">
+                              {" "}
+                              {product.oldPrice}
+                            </span>
+                          </div>
+                          <div className="d-flex justify-content-between align-content-center gap-3">
+                            <span className="wishalist-icon">
+                              <i className="fa fa-heart text-danger"></i>
+                            </span>
+                            <button
+                              onClick={() => removeFromWishlist(product.id)}
+                            >
+                              <FaTrash className="text-danger fs-5 mt-2" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="pro-details ms-3">
-                    <h6>
-                      <Link to={`/product-details/${product.id}`}>
-                        {product.title}
+                ))}
+                <div className="other-link">
+                  <ul className="other-ul d-flex justify-content-between align-content-center">
+                    <li className="wishlist-other-link">
+                      <Link to="/product" className="btn btn-style2">
+                        Continue shopping
                       </Link>
-                    </h6>
-                    <span>{product.newPrice}</span>
-                  </div>
-                </div>
-
-                <div className="qty-item">
-                  <button
-                    onClick={() => removeFromWishlist(product.id)}
-                    className="btn btn-outline-danger"
-                  >
-                    Remove
-                  </button>
+                    </li>
+                    <li className="wishlist-other-link">
+                      <Link onClick={clearWishlist} className="btn btn-style2">
+                        Clear wishlist
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
-          ))}
-
-          <div className="text-center">
-            <button onClick={clearWishlist} className="btn btn-style2 mt-3">
-              Clear Wishlist
-            </button>
           </div>
         </div>
-      </section> */}
+      </section>
     </>
   );
 };
