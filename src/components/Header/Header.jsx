@@ -532,6 +532,18 @@ const Wrapper = styled.section`
   .link-title.active-link .sp-link-title {
     color: #0d6efd !important;
   }
+
+  .count-badge {
+    display: inline-block;
+    background: red;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    margin-left: 4px;
+    vertical-align: top;
+  }
 `;
 
 export default Header;
