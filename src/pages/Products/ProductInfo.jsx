@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 
 import categoriesData from "../../category.js";
 import prodactData from "../../products.js";
+import { WishlistContext } from "../../context/WishlistContext.js";
 
 const ProductInfo = () => {
   const [categories, setCategories] = useState([]);
@@ -14,6 +15,7 @@ const ProductInfo = () => {
   const [selectedBrand, setSelectedBrand] = useState("All");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0); // dynamic later
+  const { addToWishlist } = useContext(WishlistContext); // 🧩 use context
 
   // ✅ Load categories & products on mount
   useEffect(() => {
@@ -308,7 +310,9 @@ const ProductInfo = () => {
                                       <div className="product-action">
                                         <Link
                                           className="quickview"
-                                          onClick={() => openModal("quickview", product.id)}
+                                          onClick={() =>
+                                            openModal("quickview", product.id)
+                                          }
                                         >
                                           <span className="tooltip-text">
                                             Quickview
@@ -329,7 +333,8 @@ const ProductInfo = () => {
                                           </span>
                                         </Link>
                                         <Link
-                                          to="/wishlist-product"
+                                          // to="/wishlist-product"
+                                          onClick={() => addToWishlist(product)}
                                           className="wishlist"
                                         >
                                           <span className="tooltip-text">

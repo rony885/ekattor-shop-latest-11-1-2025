@@ -138,7 +138,8 @@ const Products = () => {
                             </Link>
 
                             <Link
-                              to="#add-to-cart"
+                              to="cart-view"
+                              // to="#add-to-cart"
                               className="add-to-cart"
                               // data-bs-toggle="modal"
                               // data-bs-target="#add-to-cart"
