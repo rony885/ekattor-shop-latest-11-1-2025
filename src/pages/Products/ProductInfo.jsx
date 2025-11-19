@@ -4,7 +4,7 @@ import { FaSpinner } from "react-icons/fa";
 
 import categoriesData from "../../category.js";
 import prodactData from "../../products.js";
-import { WishlistContext } from "../../context/WishlistContext.js";
+import { WishlistContext } from "../../context/WishlistContext.jsx";
 
 const ProductInfo = () => {
   const [categories, setCategories] = useState([]);

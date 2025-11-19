@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Trash2, X } from "lucide-react";
 import { Minus, Plus } from "lucide-react";
+import { CartContext } from "../context/CartContext";
 
 const Cart = ({ cartOpen, closeMennu }) => {
+  const { cartItems, removeFromCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   return (
@@ -42,7 +44,86 @@ const Cart = ({ cartOpen, closeMennu }) => {
         <div className="drawer-inner">
           <div className="drawer-scrollable">
             <ul className="cart-items">
-              <li className="cart-item">
+              {cartItems.map((product) => {
+                return (
+                  <li key={product.id} className="cart-item">
+                    <div className="cart-item-info">
+                      <div className="cart-item-image">
+                        <Link to="/product-details">
+                          <img
+                            // src="/img/menu/home-pro-banner1.jpg"
+                            src={product.img1}
+                            className="img-fluid"
+                            alt="cart-1"
+                          />
+                        </Link>
+                      </div>
+                      <div className="cart-item-details">
+                        <div className="cart-item-name">
+                          <Link to="/product-details">Portable speaker</Link>
+                        </div>
+                        <div className="cart-pro-info">
+                          <div className="cart-qty-price">
+                            <span> {product.quantity}</span>
+                            <span>×</span>
+                            <span className="price">{product.newPrice}</span>
+                          </div>
+                        </div>
+                        <div className="cart-item-sub">
+                          <div className="cart-qty-price-remove">
+                            <div className="cart-item-qty">
+                              <div className="js-qty-wrapper">
+                                <div className="js-qty-wrap">
+                                  <button
+                                    type="button"
+                                    className="js-qty-adjust ju-qty-adjust-minus"
+                                  >
+                                    <Minus size={16} strokeWidth={2} />
+                                  </button>
+                                  <input
+                                    type="text"
+                                    className="js-qty-num"
+                                    name="name"
+                                    defaultValue="1"
+                                    pattern="[0-9]*"
+                                  />
+                                  <button
+                                    type="button"
+                                    className="js-qty-adjust ju-qty-adjust-plus"
+                                  >
+                                    <Plus size={16} strokeWidth={2} />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="cart-item-price">
+                              <span className="cart-price">$12.00</span>
+                            </div>
+                            <div className="cart-item-remove">
+                              <button
+                                type="button"
+                                className="cart-remove"
+                                onClick={() => removeFromCart(product.id)}
+                              >
+                                <Trash2 size={16} strokeWidth={2} />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="cart-item-variants">
+                          <h6>Color:</h6>
+                          <span>Black</span>
+                        </div>
+                        <div className="cart-item-variants">
+                          <h6>Size:</h6>
+                          <span>XL</span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+              {/* <li className="cart-item">
                 <div className="cart-item-info">
                   <div className="cart-item-image">
                     <Link to="/product-details">
@@ -111,8 +192,8 @@ const Cart = ({ cartOpen, closeMennu }) => {
                     </div>
                   </div>
                 </div>
-              </li>
-              <li className="cart-item">
+              </li> */}
+              {/* <li className="cart-item">
                 <div className="cart-item-info">
                   <div className="cart-item-image">
                     <Link to="/product-details">
@@ -321,7 +402,7 @@ const Cart = ({ cartOpen, closeMennu }) => {
                     </div>
                   </div>
                 </div>
-              </li>
+              </li> */}
             </ul>
             <div className="drawer-notes">
               <label htmlFor="cartnote">Order note</label>

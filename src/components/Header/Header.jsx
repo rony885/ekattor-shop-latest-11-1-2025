@@ -10,6 +10,7 @@ import {
   FiUser,
 } from "react-icons/fi";
 import { WishlistContext } from "../../context/WishlistContext"; // make sure path is correct
+import { CartContext } from "../../context/CartContext.jsx";
 
 const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
   const [isVegaOpen, setIsVegaOpen] = useState(false);
@@ -17,6 +18,7 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const { wishlist } = useContext(WishlistContext); // get wishlist from context
+  const { Cart } = useContext(CartContext);
 
   const handleVegaToggle = () => {
     setIsVegaOpen((prev) => !prev);
@@ -508,9 +510,10 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                                     color="currentColor"
                                   />
                                 </span>
-
+{cart.length > 0 && (
                                 <span className="cart-title text">My cart</span>
-                                <span className="bigcounter">04</span>
+                                <span className="bigcounter">{Cart.length}</span>
+                                )}
                               </Link>
                             </div>
                           </div>

@@ -5,11 +5,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import prodactData from "../../products.js";
-import { WishlistContext } from "../../context/WishlistContext.js";
+import { WishlistContext } from "../../context/WishlistContext.jsx";
+import { CartContext } from "../../context/CartContext.jsx";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const { addToWishlist } = useContext(WishlistContext); // 🧩 use context
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     setProducts(prodactData);
@@ -140,6 +142,7 @@ const Products = () => {
                             <Link
                               to="cart-view"
                               // to="#add-to-cart"
+                              onClick={() => addToCart(product)}
                               className="add-to-cart"
                               // data-bs-toggle="modal"
                               // data-bs-target="#add-to-cart"
