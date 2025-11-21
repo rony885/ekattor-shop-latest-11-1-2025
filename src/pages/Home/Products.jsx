@@ -140,7 +140,7 @@ const Products = () => {
                             </Link>
 
                             <Link
-                              to="cart-view"
+                              // to="cart-view"
                               // to="#add-to-cart"
                               onClick={() => addToCart(product)}
                               className="add-to-cart"
@@ -152,6 +152,7 @@ const Products = () => {
                                 <i className="feather-shopping-bag"></i>
                               </span>
                             </Link>
+                            
                             {/* <Link to="/wishlist-product" className="wishlist"> */}
                             <Link
                               to="#"

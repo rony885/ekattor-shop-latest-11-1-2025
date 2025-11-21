@@ -18,7 +18,7 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const { wishlist } = useContext(WishlistContext); // get wishlist from context
-  const { Cart } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext); // FIXED
 
   const handleVegaToggle = () => {
     setIsVegaOpen((prev) => !prev);
@@ -510,10 +510,11 @@ const Header = ({ toggleMenu, toggleMennu, toggleMennuVegaMobile }) => {
                                     color="currentColor"
                                   />
                                 </span>
-{cart.length > 0 && (
+
                                 <span className="cart-title text">My cart</span>
-                                <span className="bigcounter">{Cart.length}</span>
-                                )}
+                                <span className="bigcounter">
+                                  {cartItems.length}
+                                </span>
                               </Link>
                             </div>
                           </div>
