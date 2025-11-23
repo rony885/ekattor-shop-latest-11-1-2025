@@ -71,10 +71,7 @@ const VegaMobile = ({ vegaMobileOpen, closeMennuVegaMobile }) => {
                         </Link>
                       </li>
                       <li className="productsupmenu-li">
-                        <Link
-                          to="/collection"
-                          className="productsuplink-title"
-                        >
+                        <Link to="/collection" className="productsuplink-title">
                           <span className="sp-link-title">Collection left</span>
                         </Link>
                       </li>
@@ -264,10 +261,7 @@ const VegaMobile = ({ vegaMobileOpen, closeMennuVegaMobile }) => {
                         </Link>
                       </li>
                       <li className="productsupmenu-li">
-                        <Link
-                          to="/collection"
-                          className="productsuplink-title"
-                        >
+                        <Link to="/collection" className="productsuplink-title">
                           <span className="sp-link-title">Collection left</span>
                         </Link>
                       </li>

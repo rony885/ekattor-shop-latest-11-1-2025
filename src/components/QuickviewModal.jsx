@@ -556,67 +556,6 @@ const QuickviewModal = () => {
             </div>
             <div className="modal-body">
               <div className="quickview-slider">
-                {/* <Slider
-                  asNavFor={nav2}
-                  ref={(slider1) => setNav1(slider1)}
-                  arrows={true}
-                  fade={true}
-                  infinite={true}
-                  className="main-slider"
-                >
-                  {productImages.map((img, index) => (
-                    <div key={index}>
-                      <Link
-                        to="/product-details"
-                        onClick={() => closeModal("quickview")}
-                      >
-                        <img
-                          // src={img}
-                          src={img}
-                          className="img-fluid"
-                          alt={`p-${index + 1}`}
-                        />
-                      </Link>
-                    </div>
-                  ))}
-
-       
-                  <div>
-                      <Link
-                        to={`/product-details/${product.id}`}
-                        onClick={() => closeModal("quickview")}
-                      >
-                        <img
-                          src={img}
-                          src={findProduct.img1}
-                          className="img-fluid"
-                          alt=""
-                        />
-                      </Link>
-                    </div> 
-            
-                </Slider>
-
-                <Slider
-                  asNavFor={nav1}
-                  ref={(slider2) => setNav2(slider2)}
-                  slidesToShow={4}
-                  swipeToSlide={true}
-                  focusOnSelect={true}
-                  infinite={true}
-                  className="thumb-slider"
-                >
-                  {productImages.map((img, index) => (
-                    <div key={index}>
-                      <img
-                        src={img}
-                        className="img-fluid"
-                        alt={`thumb-${index + 1}`}
-                      />
-                    </div>
-                  ))}
-                </Slider> */}
-
                 <Slider
                   asNavFor={nav2}
                   ref={(slider1) => setNav1(slider1)}
@@ -625,20 +564,6 @@ const QuickviewModal = () => {
                   infinite={true}
                   className="main-slider"
                 >
-                  {/* {products.map((product) => (
-                    <div key={product.id}>
-                      <Link
-                        to={`/product-details/${product.id}`}
-                        onClick={() => closeModal("quickview")}
-                      >
-                        <img
-                          src={product.img1}
-                          className="img-fluid"
-                          alt={product.title || `product-${product.id}`}
-                        />
-                      </Link>
-                    </div>
-                  ))} */}
                   {productImages.map((img, i) => (
                     <div key={i}>
                       <img
@@ -661,15 +586,6 @@ const QuickviewModal = () => {
                   infinite={true}
                   className="thumb-slider"
                 >
-                  {/* {products.map((product) => (
-                    <div key={product.id}>
-                      <img
-                        src={product.img1}
-                        className="img-fluid"
-                        alt={`thumb-${product.id}`}
-                      />
-                    </div>
-                  ))} */}
                   {productImages.map((img, i) => (
                     <div key={i}>
                       <img

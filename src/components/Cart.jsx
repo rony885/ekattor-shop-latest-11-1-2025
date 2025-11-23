@@ -58,7 +58,6 @@ const Cart = ({ cartOpen, closeMennu }) => {
                           <div className="cart-item-image">
                             <Link to="/product-details">
                               <img
-                                // src="/img/menu/home-pro-banner1.jpg"
                                 src={product.img1}
                                 className="img-fluid"
                                 alt="cart-1"
