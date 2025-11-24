@@ -5,6 +5,7 @@ import { FaSpinner } from "react-icons/fa";
 import categoriesData from "../../category.js";
 import prodactData from "../../products.js";
 import { WishlistContext } from "../../context/WishlistContext.jsx";
+import { CartContext } from "../../context/CartContext.jsx";
 
 const ProductInfo = () => {
   const [categories, setCategories] = useState([]);
@@ -16,6 +17,7 @@ const ProductInfo = () => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0); // dynamic later
   const { addToWishlist } = useContext(WishlistContext); // 🧩 use context
+  const { addToCart } = useContext(CartContext);
 
   // ✅ Load categories & products on mount
   useEffect(() => {
@@ -322,7 +324,8 @@ const ProductInfo = () => {
                                           </span>
                                         </Link>
                                         <Link
-                                          to="#add-to-cart"
+                                          // to="#add-to-cart"
+                                          onClick={() => addToCart(product)}
                                           className="add-to-cart"
                                         >
                                           <span className="tooltip-text">
