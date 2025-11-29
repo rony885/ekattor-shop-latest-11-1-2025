@@ -469,7 +469,10 @@ const ViewCartInfo = () => {
                                 </div>
 
                                 <div className="item-text">
-                                  <Link to="/product">Bluetooth earbuds</Link>
+                                  {/* <Link to="/product">Bluetooth earbuds</Link> */}
+                                  <Link to={`/product/${product.id}`}>
+                                    {product.category}
+                                  </Link>
                                   <span className="item-option">
                                     <span className="item-title">Color:</span>
                                     <span className="item-type">Black</span>

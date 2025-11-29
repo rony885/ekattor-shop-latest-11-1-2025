@@ -66,8 +66,11 @@ const Cart = ({ cartOpen, closeMennu }) => {
                           </div>
                           <div className="cart-item-details">
                             <div className="cart-item-name">
-                              <Link to="/product-details">
+                              {/* <Link to="/product-details">
                                 Portable speaker
+                              </Link> */}
+                              <Link to="/product-details">
+                                {product.category}
                               </Link>
                             </div>
                             <div className="cart-pro-info">
