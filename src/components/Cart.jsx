@@ -70,7 +70,7 @@ const Cart = ({ cartOpen, closeMennu }) => {
                                 Portable speaker
                               </Link> */}
                               <Link to="/product-details">
-                                {product.category}
+                                {product.title}
                               </Link>
                             </div>
                             <div className="cart-pro-info">
