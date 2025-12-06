@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const OrderComplete = () => {
+  const { cartItems } = useContext(CartContext);
+
+  // Convert price string -> number
+  const getPriceNumber = (value) => {
+    if (!value) return 0;
+    const clean = String(value).replace(/[^0-9]/g, "");
+    const num = parseFloat(clean);
+    return isNaN(num) ? 0 : num;
+  };
+
+  // Calculate totals
+  const subtotal = cartItems.reduce((acc, item) => {
+    const price = getPriceNumber(item.newPrice ?? item.price);
+    const qty = item.quantity || 1;
+    return acc + price * qty;
+  }, 0);
+
+  const shippingCost = 0; // free shipping
+  const total = subtotal + shippingCost;
+
   return (
     <>
       <section className="breadcrumb-area">
@@ -81,15 +102,20 @@ const OrderComplete = () => {
                       <p className="transition">Transaction No : 66282856617</p>
                       <span className="order-span p-label">
                         <span className="n-price">Price</span>
-                        <span className="o-price">$128,00</span>
+                        <span className="o-price">
+                          ৳{subtotal.toLocaleString()}
+                        </span>
                       </span>
                       <span className="order-span p-label">
                         <span className="n-price">Shipping charge</span>
-                        <span className="o-price">$8,00</span>
+                        {/* <span className="o-price">$8,00</span> */}
+                        <span className="o-price">Free</span>
                       </span>
                       <span className="order-span p-label">
                         <span className="n-price">Order Total</span>
-                        <span className="o-price">$136,00</span>
+                        <span className="o-price">
+                          ৳{total.toLocaleString()}
+                        </span>
                       </span>
                     </li>
                   </ul>
